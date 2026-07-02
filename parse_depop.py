@@ -1,5 +1,6 @@
 import re
 from bs4 import BeautifulSoup
+import json
 
 with open("depop_raw.html", encoding="utf-8") as f:
     soup = BeautifulSoup(f, "html.parser")
@@ -41,3 +42,6 @@ for listing in listings:
         "url": url,
     })
 
+with open("listings.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+print(f"Saved {len(data)} listings.json")
