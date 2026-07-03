@@ -1,3 +1,5 @@
-depop_raw.html
-check.py
+.venv/
 __pycache__/
+.env
+legacy/depop_raw.html
+legacy/check.py
