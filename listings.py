@@ -1,5 +1,3 @@
-from ebay_client import get_access_token, search_all_listings
-
 ACCESSORY_KEYWORDS = [  # titles containing these are parts/accessories, not the actual product
     "case", "cover", "tips", "tip", "skin", "sticker", "strap",
     "empty box", "box only", "for parts", "replacement", "manual", "packaging",
@@ -43,19 +41,3 @@ def extract_listings(listings_raw):  # sorts paginated listings
         listings.append(listing)
 
     return listings
-
-
-if __name__ == "__main__":
-    # confirm token
-    token = get_access_token()
-
-    # confirm search
-    items = search_all_listings(token, "nike shirt")
-    print(f"fetched: {len(items)} items")
-
-    # confirm extraction
-    cleaned = extract_listings(items)
-    print(f"Extracted {len(cleaned)} listings")
-
-    for listing in cleaned[:5]:
-        print(listing)

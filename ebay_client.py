@@ -87,18 +87,3 @@ def search_all_listings(token, query, max_items=1000): # pagination
             break
 
     return all_items
-
-
-if __name__ == "__main__":
-    # confirm env loaded
-    print(f"Client ID: {CLIENT_ID}")
-    print(f"Client Secret loaded: {bool(CLIENT_SECRET)}")
-    print(f"Environment: {EBAY_ENV}")
-    
-    # confirm token
-    token = get_access_token()
-    print(f"Access token: {token[:15]}...")
-
-    results = search_listings(token, "nike shirt")
-    print(f"total matches: {results.get('total')}")
-    print(f"Items returned: {len(results.get('itemSummaries', []))}")
