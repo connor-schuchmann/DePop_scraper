@@ -11,7 +11,6 @@ EBAY_ENV = os.getenv("EBAY_ENV")
 CLIENT_ID = os.getenv(f"{EBAY_ENV}_CLIENT_ID")
 CLIENT_SECRET = os.getenv(f"{EBAY_ENV}_CLIENT_SECRET")
 
-
 TOKEN_URLS = {
     "SANDBOX": "https://api.sandbox.ebay.com/identity/v1/oauth2/token",
     "PRODUCTION": "https://api.ebay.com/identity/v1/oauth2/token",
