@@ -48,6 +48,10 @@ if deal_groups: # if ANY deals
 else: # if NO deals
     deals = pd.DataFrame(columns=["title", "total_price", "condition", "threshold", "url"])
 
-# show deals
+# show deals, one per block so long titles/urls don't wrap into each other
 print(f"\nFound {len(deals)} deal(s):\n")
-print(deals[["title", "total_price", "condition", "threshold", "url"]].to_string(index=False))
+
+for _, deal in deals.iterrows():  # .iterrows() gives (index, row) pairs; we only need the row
+    print(deal["title"])
+    print(f"  ${deal['total_price']:.2f} | {deal['condition']} | condition avg: ${deal['threshold']:.2f}")
+    print(f"  {deal['url']}\n")
