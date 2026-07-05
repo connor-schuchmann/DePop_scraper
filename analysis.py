@@ -1,23 +1,27 @@
-import json
 import pandas as pd
 
-# pull json to data
-with open("listings.json", encoding="utf-8") as f:
-    data = json.load(f)
+from ebay_client import get_access_token, search_listings
+from listings import extract_listings
 
-# push data to panda
+query = "airpods pro 2nd gen"  # what we are searching for
+
+token = get_access_token()
+results = search_listings(token, query)
+data = extract_listings(results)
+
+# push data to panda + show stats
 df = pd.DataFrame(data)
 print("summary: ")
-print(df["price"].describe().round(2))
+print(df["total_price"].describe().round(2))
 
 # computations
-mean = df["price"].mean()
-std = df["price"].std()
+mean = df["total_price"].mean()
+std = df["total_price"].std()
 deal = mean - std
 
-deals = df[df["price"] < deal].sort_values("price")
+deals = df[df["total_price"] < deal].sort_values("total_price")
 
-# show deals        
+# show deals
 print(f"\nThreshold: ${deal:.2f}")
 print(f"Found {len(deals)} deal(s):\n")
-print(deals[["price", "size", "url"]].to_string(index=False))
+print(deals[["title", "total_price", "condition", "url"]].to_string(index=False))
